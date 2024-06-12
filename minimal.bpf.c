@@ -2,9 +2,11 @@
 
 #include <bpf/bpf_helpers.h>
 
+char LICENSE[] SEC("license") = "GPL";
+
 int my_pid = 0;
 
-SEC("tp/syscall/sys_enter_write")
+SEC("tp/syscalls/sys_enter_write")
 int handle_tp(void* ctx) {
     int pid = bpf_get_current_pid_tgid() >> 32;
 
