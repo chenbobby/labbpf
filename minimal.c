@@ -26,7 +26,7 @@ int main(int _argc, char** _argv) {
     }
 
     // Configure global variables in the BPF program.
-    program->bss->my_pid = getpid();
+    program->bss->PID = getpid();
 
     // Load and verify the BPF program.
     err = minimal_bpf__load(program);
