@@ -1,0 +1,10 @@
+[package]
+name = "rust-bpf"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+libbpf-cargo = "0.23.3"
+
+[dependencies]
+libbpf-rs = "0.23.3"

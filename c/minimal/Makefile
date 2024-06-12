@@ -7,11 +7,11 @@
 # Builds the BPF object(s) from BPF source code.
 minimal.bpf.o.tmp: minimal.bpf.c
 	clang \
+		-c \
+		-o minimal.bpf.o.tmp \
 		-target bpf \
 		-g3 -Wall -Wextra \
 		-I /usr/include/x86_64-linux-gnu \
-		-c \
-		-o minimal.bpf.o.tmp \
 		minimal.bpf.c
 
 # Links a single BPF object from multiple BPF objects.
@@ -30,9 +30,9 @@ minimal.skel.h: minimal.bpf.o
 # Builds the application object(s).
 minimal.o: minimal.skel.h minimal.c
 	clang \
-		-g3 -Wall -Wextra \
 		-c \
 		-o minimal.o \
+		-g3 -Wall -Wextra \
 		minimal.c
 
 # Links a single application executable from multiple object files.
@@ -44,7 +44,7 @@ minimal: minimal.o
 	clang \
 		-lelf -lz \
 		-o minimal \
-		minimal.o ../libbpf/src/libbpf.a
+		minimal.o ../../../libbpf/src/libbpf.a
 
 # Deletes all generated files.
 .PHONY: clean
